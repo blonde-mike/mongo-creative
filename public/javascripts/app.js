@@ -13,35 +13,38 @@ angular.module('database', [])
                 if ($scope.formContent === '' || $scope.tagContent === '' || $scope.titleContent === '') {
                     return;
                 }
-                console.log("In addComment with " + $scope.formContent);
+                console.log("In addToDatabase with " + $scope.formContent);
                 $scope.create({
-                    title: $scope.formContent,
-                    upvotes: 0,
+                    title: $scope.titleContent,
+                    tag: $scope.tagContent,
+                    url: $scope.formContent
                 });
+                $scope.titleContent = '';
+                $scope.tagContent = '';
                 $scope.formContent = '';
             };
-            $scope.upvote = function (comment) {
-                return $http
-                    .put("/comments/" + comment._id + "/upvote")
-                    .success(function (data) {
-                        console.log("upvote worked");
-                        comment.upvotes += 1;
-                    });
-            };
-            $scope.incrementUpvotes = function (comment) {
-                // comment.upvotes += 1;
-                $scope.upvote(comment);
-            };
+            // $scope.upvote = function (comment) {
+            //     return $http
+            //         .put("/comments/" + comment._id + "/upvote")
+            //         .success(function (data) {
+            //             console.log("upvote worked");
+            //             comment.upvotes += 1;
+            //         });
+            // };
+            // $scope.incrementUpvotes = function (comment) {
+            //     // comment.upvotes += 1;
+            //     $scope.upvote(comment);
+            // };
             $scope.getAll = function () {
-                return $http.get("/comments").success(function (data) {
-                    angular.copy(data, $scope.comments);
+                return $http.get("/pictures").success(function (data) {
+                    angular.copy(data, $scope.database);
                 });
             };
             $scope.getAll();
-            $scope.create = function (comment) {
+            $scope.create = function (picture) {
                 console.log("test");
-                return $http.post('/comments', comment).success(function (data) {
-                    $scope.comments.push(data);
+                return $http.post('/pictures', picture).success(function (data) {
+                    $scope.database.push(data);
                 });
                 $scope.getAll();
             };

@@ -16,7 +16,7 @@ router.get("/pictures", function (req, res, next) {
     if (err) {
       return next(err);
     }
-    res.json(Pictures);
+    res.json(pictures);
   });
 });
 
