@@ -16,9 +16,9 @@
             </div>
 
             <form ng-submit="addToDatabase()" style="margin-top30px;">
-                <input type="text" ng-model="titleContent"></input>
-                <input type="text" ng-model="formContent"></input>
-                <input type="text" ng-model="tagContent"></input>
+                <input type="text" placeholder="Title" ng-model="titleContent"></input>
+                <input type="text" placeholder="URL" ng-model="formContent"></input>
+                <input type="text" placeholder="Tag" ng-model="tagContent"></input>
                 <button type="submit">Add Image URL</button>
             </form>
             <div ng-repeat="data in database">
