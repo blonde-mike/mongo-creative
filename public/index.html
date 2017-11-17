@@ -8,24 +8,22 @@
 
 </head>
 
-<body ng-app="comment" ng-controller="MainCtrl">
+<body ng-app="database" ng-controller="MainCtrl">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="page-header">
                 <h1>DATABASE!!!!!!!</h1>
             </div>
 
-            <form ng-submit="addComment()" style="margin-top30px;">
+            <form ng-submit="addToDatabase()" style="margin-top30px;">
                 <input type="text" ng-model="formContent"></input>
-                <button type="submit">Add Comment</button>
+                <button type="submit">Add Image URL</button>
             </form>
-            <div>
-                {{test}}
-            </div>
-            <div ng-repeat="comment in comments | orderBy: '-upvotes'">
-                <span class="glyphicon glyphicon-remove" ng-click="delete(comment)"></span>
-                <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
-                {{comment.title}} - upvotes: {{comment.upvotes}}
+            <div ng-repeat="data in database">
+                {{data.title}} 
+                <img ng-src="http://www.gravatar.com/avatar/{{data.url}}" alt="{{data.tag}}" ng-click="selectImage(data)" />
+                tag: {{data.tag}}
+                <span class="glyphicon glyphicon-remove" ng-click="delete(data)"></span>
             </div>
         </div>
     </div>
