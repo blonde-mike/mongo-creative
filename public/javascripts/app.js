@@ -5,9 +5,9 @@ angular.module('database', [])
             $scope.test = "Hello world!";
             $scope.database = [ ];
             $scope.found = {
-                title: "title",
-                tag: "tag",
-                url: "url"
+                title: "Welcome",
+                tag: "welcome",
+                url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcmzkKRxd9nSto17JsiJvNtherI-meKIbZNn5MLLVJ2iUkfXAD_Q"
             };
             $scope.addToDatabase = function () {
                 // $scope.comments.push({
@@ -33,9 +33,9 @@ angular.module('database', [])
                 return $http.get("/pictures/" + $scope.searchTag).success(function (data) {
                     // console.log(data);
                     // angular.copy(data, $scope.database);
+                    $scope.searchTag = "";
                     angular.copy(data, $scope.found);
                 });
-                $scope.searchTag = '';
             }
             // $scope.upvote = function (comment) {
             //     return $http
@@ -58,7 +58,7 @@ angular.module('database', [])
             $scope.create = function (picture) {
                 console.log("test");
                 return $http.post('/pictures', picture).success(function (data) {
-                    $scope.database.push(data);
+                    angular.copy(data, $scope.found);
                 });
                 $scope.getAll();
             };
