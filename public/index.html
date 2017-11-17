@@ -23,7 +23,7 @@
             </form>
             <div ng-repeat="data in database">
                 {{data.title}} 
-                <img ng-src="{{data.url}}" alt="{{data.tag}}" ng-click="selectImage(data)" />
+                <img ng-src="{{data.url}}" alt="{{data.tag}}" ng-click="selectImage(data)" height="50dp" width="50dp" />
                 tag: {{data.tag}}
                 <span class="glyphicon glyphicon-remove" ng-click="delete(data)"></span>
             </div>
