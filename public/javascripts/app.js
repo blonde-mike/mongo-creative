@@ -4,6 +4,11 @@ angular.module('database', [])
         function ($scope, $http) {
             $scope.test = "Hello world!";
             $scope.database = [ ];
+            $scope.found = {
+                title: "title",
+                tag: "tag",
+                url: "url"
+            };
             $scope.addToDatabase = function () {
                 // $scope.comments.push({
                 //     title: $scope.formContent,
@@ -23,6 +28,15 @@ angular.module('database', [])
                 $scope.tagContent = '';
                 $scope.formContent = '';
             };
+            $scope.findPicture = function () {
+                if ($scope.searchTag === '') return;
+                return $http.get("/pictures/" + $scope.searchTag).success(function (data) {
+                    // console.log(data);
+                    // angular.copy(data, $scope.database);
+                    angular.copy(data, $scope.found);
+                });
+                $scope.searchTag = '';
+            }
             // $scope.upvote = function (comment) {
             //     return $http
             //         .put("/comments/" + comment._id + "/upvote")

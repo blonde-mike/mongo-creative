@@ -32,7 +32,8 @@ router.post("/pictures", function (req, res, next) {
 });
 
 router.param("picture", function (req, res, next, id) {
-  var query = Picture.findById(id);
+  // console.log(id);
+  var query = Picture.findOne({ tag: id });
   query.exec(function (err, picture) {
     if (err) {
       return next(err);
@@ -40,6 +41,7 @@ router.param("picture", function (req, res, next, id) {
     if (!picture) {
       return next(new Error("can't find picture"));
     }
+    // console.log(req.picture);
     req.picture = picture;
     return next();
   });
@@ -47,6 +49,7 @@ router.param("picture", function (req, res, next, id) {
 
 router.get("/pictures/:picture", function (req, res) {
   res.json(req.picture);
+  // console.log(res);
 });
 
 router.put("/pictures/:picture/upvote", function (req, res, next) {

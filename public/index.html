@@ -21,11 +21,21 @@
                 <input type="text" placeholder="Tag" ng-model="tagContent"></input>
                 <button type="submit">Add Image URL</button>
             </form>
+
+            <form ng-submit="findPicture()">
+                <input type="text" placeholder="Search By Tag" ng-model="searchTag"></input>
+            </form>
             <div ng-repeat="data in database">
                 {{data.title}} 
-                <img ng-src="{{data.url}}" alt="{{data.tag}}" ng-click="selectImage(data)" />
+                <img ng-src="{{data.url}}" alt="{{data.tag}}" ng-click="selectImage(data)" height="50dp" width="50dp" />
                 tag: {{data.tag}}
                 <span class="glyphicon glyphicon-remove" ng-click="delete(data)"></span>
+            </div>
+
+            <div>
+                {{found.title}}
+                <img ng-src="{{found.url}}" alt="{{found.tag}}" ng-click="selectImage(found)" height="50dp" width="50dp" />
+                {{found.tag}}
             </div>
         </div>
     </div>
