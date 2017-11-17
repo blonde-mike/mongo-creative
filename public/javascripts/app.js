@@ -1,16 +1,16 @@
-angular.module('comment', [])
+angular.module('database', [])
     .controller('MainCtrl', [
         '$scope', '$http',
         function ($scope, $http) {
             $scope.test = "Hello world!";
-            $scope.comments = [ ];
-            $scope.addComment = function () {
+            $scope.database = [ ];
+            $scope.addToDatabase = function () {
                 // $scope.comments.push({
                 //     title: $scope.formContent,
                 //     upvotes: 0
                 // });
                 // $scope.formContent = '';
-                if ($scope.formContent === '') {
+                if ($scope.formContent === '' || $scope.tagContent === '' || $scope.titleContent === '') {
                     return;
                 }
                 console.log("In addComment with " + $scope.formContent);

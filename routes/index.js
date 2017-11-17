@@ -9,58 +9,58 @@ router.get('/', function (req, res, next) {
 });
 
 var mongoose = require("mongoose");
-var Comment = mongoose.model("Comment");
+var Picture = mongoose.model("Picture");
 
-router.get("/comments", function (req, res, next) {
-  Comment.find(function (err, comments) {
+router.get("/pictures", function (req, res, next) {
+  Picture.find(function (err, pictures) {
     if (err) {
       return next(err);
     }
-    res.json(comments);
+    res.json(Pictures);
   });
 });
 
-router.post("/comments", function (req, res, next) {
-  var comment = new Comment(req.body);
-  console.log(comment);
-  comment.save(function (err, comment) {
+router.post("/pictures", function (req, res, next) {
+  var picture = new Picture(req.body);
+  console.log(picture);
+  picture.save(function (err, picture) {
     if (err) {
       return next(err);
     }
-    res.json(comment);
+    res.json(picture);
   });
 });
 
-router.param("comment", function (req, res, next, id) {
-  var query = Comment.findById(id);
-  query.exec(function (err, comment) {
+router.param("picture", function (req, res, next, id) {
+  var query = Picture.findById(id);
+  query.exec(function (err, picture) {
     if (err) {
       return next(err);
     }
-    if (!comment) {
-      return next(new Error("can't find comment"));
+    if (!picture) {
+      return next(new Error("can't find picture"));
     }
-    req.comment = comment;
+    req.picture = picture;
     return next();
   });
 });
 
-router.get("/comments/:comment", function (req, res) {
-  res.json(req.comment);
+router.get("/pictures/:picture", function (req, res) {
+  res.json(req.picture);
 });
 
-router.put("/comments/:comment/upvote", function (req, res, next) {
-  req.comment.upvote(function (err, comment) {
+router.put("/pictures/:picture/upvote", function (req, res, next) {
+  req.picture.upvote(function (err, picture) {
     if (err) {
       return next(err);
     }
-    res.json(comment);
+    res.json(picture);
   });
 });
 
-router.delete("/comments/:comment", function (req, res) {
+router.delete("/pictures/:picture", function (req, res) {
   console.log("in Delete");
-  req.comment.remove();
+  req.picture.remove();
   res.sendStatus(200);
 });
 
